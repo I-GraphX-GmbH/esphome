@@ -9,6 +9,7 @@ from esphome.const import (
     UNIT_VOLT,
 )
 
+AUTO_LOAD = ["voltage_sampler"]
 DEPENDENCIES = ["i2c"]
 
 # CONF_CONTINUOUS_MODE = "continuous_mode"
