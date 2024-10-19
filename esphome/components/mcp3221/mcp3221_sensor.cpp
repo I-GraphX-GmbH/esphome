@@ -26,7 +26,7 @@ float MCP3221Sensor::sample() {
     return NAN;
   }
 
-  uint16_t value = (data[0] << 8) | data[1];
+  uint16_t value = encode_uint16(data[0], data[1]);
   float voltage = value * this->reference_voltage_ / 4096.0f;
 
   return voltage;

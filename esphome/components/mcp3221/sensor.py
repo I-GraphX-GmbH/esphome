@@ -12,8 +12,6 @@ from esphome.const import (
 AUTO_LOAD = ["voltage_sampler"]
 DEPENDENCIES = ["i2c"]
 
-# CONF_CONTINUOUS_MODE = "continuous_mode"
-
 
 mcp3221_ns = cg.esphome_ns.namespace("mcp3221")
 MCP3221Sensor = mcp3221_ns.class_(
