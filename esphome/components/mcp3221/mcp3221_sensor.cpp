@@ -11,7 +11,7 @@ void MCP3221Sensor::setup() {
   ESP_LOGCONFIG(TAG, "Probing MCP3221...");
 
   if (this->write(nullptr, 0) != i2c::ERROR_OK) {
-    this->mark_failed();
+    this->status_set_warning();
     return;
   }
 }
@@ -25,6 +25,7 @@ float MCP3221Sensor::sample() {
     this->status_set_warning();
     return NAN;
   }
+  this->status_clear_warning();
 
   uint16_t value = encode_uint16(data[0], data[1]);
   float voltage = value * this->reference_voltage_ / 4096.0f;
