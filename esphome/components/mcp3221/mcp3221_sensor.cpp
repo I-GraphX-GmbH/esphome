@@ -10,7 +10,7 @@ static const char *const TAG = "mcp3221";
 void MCP3221Sensor::setup() {
   ESP_LOGCONFIG(TAG, "Probing MCP3221...");
 
-  if (!this->write(nullptr, 0)) {
+  if (this->write(nullptr, 0) != i2c::ERROR_OK) {
     this->mark_failed();
     return;
   }
@@ -20,7 +20,7 @@ float MCP3221Sensor::get_setup_priority() const { return setup_priority::DATA; }
 
 float MCP3221Sensor::sample() {
   uint8_t data[2];
-  if (!this->read(data, 2)) {
+  if (this->read(data, 2) != i2c::ERROR_OK) {
     ESP_LOGW(TAG, "Failed to read data from MCP3221");
     this->status_set_warning();
     return NAN;
