@@ -17,7 +17,7 @@ class DAC6574Channel : public output::FloatOutput, public Parented<DAC6574Output
  protected:
   friend class DAC6574Output;
 
-  const uint16_t full_scale_ = 0xFFF;
+  const uint16_t full_scale_ = 0x400;
 
   void write_state(float state) override;
 
